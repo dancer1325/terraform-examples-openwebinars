@@ -48,12 +48,16 @@ resource "aws_subnet" "pri2" {
   }
 }
 
+// ELB can't be created in VPC 's subnet without internet gateway
+// Internet gateway manages the entry traffic
 resource "aws_internet_gateway" "igw" {
   vpc_id = "${aws_vpc.vpc.id}"
 }
 
+// Route, in which all output traffic goes through internet gateway
+// VPC by default has got already internet gateway defined --> Not necessary to define it previously
 resource "aws_route" "default_route" {
-  route_table_id = "${aws_vpc.vpc.default_route_table_id}"
+  route_table_id = "${aws_vpc.vpc.default_route_table_id}" // Each VPC has got a route table created by default
   destination_cidr_block = "0.0.0.0/0"
   gateway_id = "${aws_internet_gateway.igw.id}"
 }
