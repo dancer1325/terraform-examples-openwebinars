@@ -24,11 +24,11 @@ variable "aws_amis" {
 }
 
 variable "project" {
-  type = "string"
+  type = string
   default = "web"
 }
 
 variable "environment" {
-  type = "string"
+  type = string
   default = "prod"
 }
