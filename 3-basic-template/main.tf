@@ -3,7 +3,20 @@ terraform {
 }
 
 provider "aws" {
-  region = "eu-west-1"
+  region = "eu-central-1"
   allowed_account_ids = ["723002569774"]
-  profile = "openwebinars"
+  profile = "default"
+}
+
+// 1) Declaring the resource in the same main.tf
+resource "aws_vpc" "vpc" {
+  // aws_vpc  Name of the type of resource in the provider
+  // vpc      Name of the resource in our template
+  cidr_block = "10.0.0.0/16"  // Block of the IP segment to create the VPC. Thanks to the plugin appears this field
+  enable_dns_hostnames = true
+  enable_dns_support = true
+  // Attributes not to allow the instances into the VPC have got access to a private dns, to be able to resolve their names internally
+  tags = { // tag isn't a block anymore --> Use =
+    Name = "openwebinars" // Tag for the resource
+  }
 }
