@@ -3,7 +3,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "eu-west-1"
+  region = "eu-central-1"
   allowed_account_ids = ["723002569774"]
-  profile = "openwebinars"
+  profile = "default"
 }
