@@ -1,6 +1,7 @@
 // Template used by the autoscaling group to launch instances
 resource "aws_launch_configuration" "web-server" {
-  name_prefix = "web-server-"
+#  name = "web-server-"  // Unique name
+  name_prefix = "web-server-" // Since the name of the launch configuration must be unique --> Define the name_prefix
   image_id = "${lookup(var.aws_amis, var.aws_region)}"
   instance_type = "${var.instance_type}"
   key_name = "openwebinars" // ssh key to launch the instance. It must be created from the AWS console
@@ -11,7 +12,11 @@ resource "aws_launch_configuration" "web-server" {
   }
 }
 resource "aws_autoscaling_group" "as-web" {
-  name = "${aws_launch_configuration.web-server.name}"
+  name = "${aws_launch_configuration.web-server.name}" // Important!! Naming depending on launch configuration.
+  // Consequences. If a new launch configuration is created --> A new autoscaling group will be created
+  // Reason. If you don't name depend on launch configuration --> Although launch configuration changes, it's not created a new autoscaling group,
+  // then the instances not related to any launch configuration
+  // Note: It's one of the cons of using terraform. CloudFormation manage it
   launch_configuration = "${aws_launch_configuration.web-server.name}"
   max_size = 1
   min_size = 1

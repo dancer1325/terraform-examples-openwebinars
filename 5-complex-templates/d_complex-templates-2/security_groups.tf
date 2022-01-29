@@ -46,7 +46,7 @@ resource "aws_security_group" "rds-sg" {  // Security group for the rds (relatio
     from_port = 3306
     protocol = "tcp"
     to_port = 3306
-    cidr_blocks = ["85.137.199.237/32"] // Our current ip
+    cidr_blocks = ["83.46.242.45/32"] // Our current ip
   }
   egress {
     from_port = 0
