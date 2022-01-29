@@ -1,6 +1,6 @@
 variable "aws_region" {
   type = string
-  default = "eu-west-1"
+  default = "eu-central-1"
 }
 variable "cidr" {
   type = string
@@ -43,6 +43,7 @@ variable "aws_id" {
 }
 
 variable "aws_amis" {
+  #  type = "map" // Deprecated
   type = map
   default = {
     "eu-west-1" = "ami-00ae935ce6c2aa534"  // Key = value
