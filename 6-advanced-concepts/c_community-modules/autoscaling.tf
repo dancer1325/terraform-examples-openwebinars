@@ -17,7 +17,7 @@ resource "aws_autoscaling_group" "as-web" {
   max_size              = 1
   min_size              = 1
   load_balancers        = ["${aws_elb.web.id}"]
-  vpc_zone_identifier   = ["${module.vpc.public_subnets}"]
+  vpc_zone_identifier   = "${module.vpc.public_subnets}"
   wait_for_elb_capacity = 1
 
   tag {

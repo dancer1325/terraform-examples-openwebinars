@@ -1,7 +1,7 @@
 resource "aws_elb" "web" {
   name                      = "${var.environment}-web-elb"
   cross_zone_load_balancing = true
-  subnets                   = ["${module.vpc.public_subnets}"]
+  subnets                   = "${module.vpc.public_subnets}"
   security_groups           = ["${aws_security_group.elb-sg.id}"]
 
   listener {
