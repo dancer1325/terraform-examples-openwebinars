@@ -1,3 +1,4 @@
+// Create MySQL server in Amazon's RDS service
 resource "aws_db_instance" "mydb" {
   identifier        = "mydb"
   username          = "${var.rds_username}"
@@ -13,16 +14,19 @@ resource "aws_db_instance" "mydb" {
   skip_final_snapshot    = true
 }
 
+// Create another database, in addition to "mydb" created by aws_db_instance, but this one into MySQL provider
 resource "mysql_database" "mydb" {
   name = "mydb"
 }
 
+// Create a user into the second MySQL database
 resource "mysql_user" "app_user" {
   user = "app_user"
   password = "secret_passwd"
   host = "%"
 }
 
+// Give grants to the user in the MySQL database
 resource "mysql_grant" "grants" {
   database = "${mysql_database.mydb.name}"
   privileges = ["ALL"]

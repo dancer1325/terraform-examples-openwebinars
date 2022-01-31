@@ -1,23 +1,23 @@
 variable "aws_region" {
-  type = "string"
-  default = "eu-west-1"
+  type = string
+  default = "eu-central-1"
 }
 
 variable "aws_id" {
-  type = "string"
+  type = string
   default = "723002569774"
 }
 variable "environment" {
-  type = "string"
+  type = string
   default = "pro"
 }
 
 variable "rds_username" {
-  type = "string"
+  type = string
   default = "root"
 }
 
 variable "rds_passwd" {
-  type = "string"
+  type = string
   default = "0penW3b1n4r$"
 }
