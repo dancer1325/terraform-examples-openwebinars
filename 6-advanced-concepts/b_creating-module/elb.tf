@@ -1,7 +1,7 @@
 resource "aws_elb" "web" {
   name = "${var.environment}-web-elb"
   cross_zone_load_balancing = true
-  subnets = ["${module.vpc.sub_pub1}", "${module.vpc.sub_pub2}"]
+  subnets = ["${module.vpc.sub_pub1}", "${module.vpc.sub_pub2}"]  // Refer to some variable declared in a module
   security_groups = ["${aws_security_group.elb-sg.id}"]
 
   listener {
