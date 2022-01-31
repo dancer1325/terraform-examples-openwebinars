@@ -3,7 +3,8 @@ resource "aws_elb" "elb-web" {
   cross_zone_load_balancing = true
   subnets = ["${aws_subnet.pub1.id}", "${aws_subnet.pub2.id}"]
 
-  "listener" {
+  #  "listener" {  // Deprecated
+  listener {
     instance_port = 80
     instance_protocol = "http"
     lb_port = 80
