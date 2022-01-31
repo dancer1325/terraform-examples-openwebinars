@@ -4,7 +4,7 @@ resource "aws_vpc" "vpc" {
   cidr_block = "${var.vpc_cidr}"
   enable_dns_hostnames = "${var.enable_dns_hostnames}"
   enable_dns_support = "${var.enable_dns_support}"
-  tags {
+  tags = {
     Name = "openwebinars"
   }
 }
@@ -14,7 +14,7 @@ resource "aws_subnet" "pub1" {
   vpc_id = "${aws_vpc.vpc.id}"
   map_public_ip_on_launch = true
   availability_zone = "${data.aws_availability_zones.az.names[0]}"
-  tags {
+  tags = {
     Name = "pub1"
   }
 }
@@ -24,7 +24,7 @@ resource "aws_subnet" "pub2" {
   vpc_id = "${aws_vpc.vpc.id}"
   map_public_ip_on_launch = true
   availability_zone = "${data.aws_availability_zones.az.names[1]}"
-  tags {
+  tags = {
     Name = "pub2"
   }
 }
@@ -34,7 +34,7 @@ resource "aws_subnet" "pri1" {
   vpc_id = "${aws_vpc.vpc.id}"
   map_public_ip_on_launch = true
   availability_zone = "${data.aws_availability_zones.az.names[0]}"
-  tags {
+  tags = {
     Name = "pri1"
   }
 }
@@ -44,7 +44,7 @@ resource "aws_subnet" "pri2" {
   vpc_id = "${aws_vpc.vpc.id}"
   map_public_ip_on_launch = true
   availability_zone = "${data.aws_availability_zones.az.names[1]}"
-  tags {
+  tags = {
     Name = "pri2"
   }
 }
