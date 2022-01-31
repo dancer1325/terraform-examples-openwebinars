@@ -1,6 +1,6 @@
 resource "aws_security_group" "elb-sg" {
   name   = "elb-sg"
-  vpc_id = "${module.vpc.vpc_id}"
+  vpc_id = module.vpc.vpc_id
 
   ingress {
     from_port   = 80
@@ -26,7 +26,7 @@ resource "aws_security_group" "elb-sg" {
 
 resource "aws_security_group" "web-sg" {
   name   = "web-sg"
-  vpc_id = "${module.vpc.vpc_id}"
+  vpc_id = module.vpc.vpc_id
 
   ingress {
     from_port       = 80
@@ -52,7 +52,7 @@ resource "aws_security_group" "web-sg" {
 
 resource "aws_security_group" "rds-sg" {
   name   = "rds-sg"
-  vpc_id = "${module.vpc.vpc_id}"
+  vpc_id = module.vpc.vpc_id
 
   ingress {
     from_port       = 3306
